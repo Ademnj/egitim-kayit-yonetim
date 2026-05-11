@@ -1,6 +1,7 @@
 from dbmanager import DBManager
 import datetime
 from student import Student
+from teacher import teacher
 
 class App:
     def __init__(self):
@@ -20,14 +21,37 @@ class App:
             elif islem == "4":
                 self.deleteStudent()
             elif islem == "5":
-                pass
+                self.addTeacher()
             elif islem == "6":
-                pass
+                self.classLesson()
             elif islem == "7" or islem == "E" or islem == "Ç":
                 break
             else:
                 print("Hatalı Seçim Yaptınız")
                 
+    def classLesson(self):
+        self.displayClasses()
+        classid = int(input("Hangi Sınıf:"))
+
+        classLesson = self.db.getLessonsByClassId(classid)
+        print("Sınıflara Göre Dersler")
+        for index,std in enumerate(classLesson):
+            print(f"{index + 1}- Ders:{std[1]} | Öğretmen {std[2]}")
+
+        return classid
+
+    def addTeacher(self):
+        Branch = input("Branş Giriniz: ")
+        name = input("Ad giriniz:")
+        surname = input("Soyad giriniz:")
+        year = int(input("Yıl giriniz:"))
+        month = int(input("Ay giriniz:"))
+        day = int(input("Gün giriniz:"))
+        birthdate = datetime.date(year, month, day)
+        gender = input("Cinsiyet Giriniz(E/K): ")
+
+        new_teacher = teacher(None,Branch,name,surname,birthdate,gender)
+        self.db.addTeacher(new_teacher)
 
     def deleteStudent(self):
         classid = self.displayStudents()

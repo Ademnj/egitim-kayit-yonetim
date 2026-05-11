@@ -10,3 +10,14 @@ class teacher:
         self.surname = surname
         self.birthdate = birthdate
         self.gender = gender
+
+    @staticmethod
+    def createTeacher(obj):
+        list = []
+
+        if isinstance(obj,tuple):
+            list.append(teacher(obj[0],obj[1],obj[2],obj[3],obj[4],obj[5]))
+        else:
+            for i in obj:
+                list.append(teacher(i[0],i[1],i[2],i[3],i[4],i[5]))
+        return list

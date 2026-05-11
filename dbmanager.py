@@ -4,6 +4,7 @@ from connection import connection
 from student import Student
 from teacher import teacher
 from Class import Class
+from classlesson import classLesson 
 
 class DBManager:
     def __init__(self):
@@ -52,6 +53,16 @@ class DBManager:
             obj = self.cursor.fetchall()
             print(obj)
             return Student.createStudent(obj)  # ← return + Student objesi ekle
+        except mysql.connector.Error as err:
+            print(f"HATA", err)
+
+    def getLessonsByClassId(self, classid):
+        sql = "SELECT class.name,lesson.name, CONCAT(teacher.name,'',teacher.surname) as teacherName FROM classlesson JOIN class ON classlesson.classId = class.id JOIN lesson ON classlesson.lessonId = lesson.id JOIN teacher ON classlesson.teacherId = teacher.id WHERE classlesson.classId = %s"
+        value = (classid,)
+        self.cursor.execute(sql, value)
+        try:
+            
+            return self.cursor.fetchall()
         except mysql.connector.Error as err:
             print(f"HATA", err)
 
