@@ -1,9 +1,14 @@
-# egitim-kayit-yonetim
-Basit Python ve MySQL ile okul yönetim sistemi
-## Kurulum
-1. connection.py dosyasını oluşturun
-2. Kendi MySQL bilgilerinizi girin:
-   - host: localhost
-   - user: root
-   - password: şifreniz
-   - database: veritabanı adınız
+## Proje Hakkında
+Python ve MySQL kullanılarak geliştirilmiş terminal tabanlı 
+okul kayıt yönetim sistemi.
+
+## Özellikler
+- Öğrenci ekleme, silme, güncelleme, listeleme
+- Öğretmen ekleme
+- Sınıflara göre ders listeleme
+- MySQL veritabanı entegrasyonu
+
+## Kullanılan Teknolojiler
+- Python 3.12
+- MySQL
+- mysql-connector-python
